@@ -2,6 +2,23 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter.simpledialog import askstring
 
+
+def restart():
+    global current_player, board
+    board = [[" " for x in range(3)] for x in range(3)]
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j].config(text=" ")
+    current_player = askstring("Начало", "Введите Х или 0")
+    if current_player == "X" or current_player == "0":
+        print(f"Игрок выбрал {current_player}")
+        root.mainloop()
+    elif current_player:
+        messagebox.showerror("Ошибка", "Пожалуйста, выберите Х или 0")
+    else:
+        messagebox.showerror("Ошибка", "Пользователь отменил ввод")
+
+
 def checkWinner(board):
     for row in board:
         if all(x == current_player for x in row):
@@ -20,8 +37,10 @@ def button_click(i, j):
             buttons[i][j].config(text=current_player)
         if checkWinner(board):
             messagebox.showinfo("Победа", f"Победил игрок {current_player}!!")
+            restart()
         if all(board[i][j] != " " for i in range(3) for j in range(3)):
             messagebox.showinfo("НИЧЬЯ","Победила дружба!!")
+            restart()
         else:
             current_player = "0" if current_player == "X" else "X"
 
