@@ -18,8 +18,6 @@ def button_click(i, j):
         if board[i][j] == " ":
             board[i][j] = current_player
             buttons[i][j].config(text=current_player)
-        if checkWinner(board):
-            messagebox.showinfo("Победа", f"Победил {current_player}!!")
 
 
 root = tk.Tk()
