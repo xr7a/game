@@ -15,8 +15,10 @@ def restart():
         root.mainloop()
     elif current_player:
         messagebox.showerror("Ошибка", "Пожалуйста, выберите Х или 0")
+        restart()
     else:
         messagebox.showerror("Ошибка", "Пользователь отменил ввод")
+        root.destroy()
 
 
 def checkWinner(board):
@@ -63,5 +65,7 @@ if current_player == "X" or current_player == "0":
     root.mainloop()
 elif current_player:
     messagebox.showerror("Ошибка","Пожалуйста, выберите Х или 0")
+    restart()
 else:
     messagebox.showerror("Ошибка", "Пользователь отменил ввод")
+    root.destroy()
