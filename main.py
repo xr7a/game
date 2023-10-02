@@ -20,6 +20,7 @@ def button_click(i, j):
             buttons[i][j].config(text=current_player)
 
 
+
 root = tk.Tk()
 board = [[" " for x in range(3)] for x in range(3)]
 buttons = []
