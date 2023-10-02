@@ -8,7 +8,6 @@ def button_click(i, j):
         board[i][j] = current_player
         buttons[i][j].config(text=current_player)
 
-
 root = tk.Tk()
 board = [[" " for x in range(3)] for x in range(3)]
 buttons = []
@@ -28,4 +27,5 @@ elif current_player:
     messagebox.showerror("Ошибка","Пожалуйста, выберите Х или 0")
 else:
     messagebox.showerror("Ошибка", "Пользователь отменил ввод")
+
 
