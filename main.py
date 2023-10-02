@@ -2,11 +2,25 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter.simpledialog import askstring
 
+def checkWinner(board):
+    for row in board:
+        if all(x == current_player for x in row):
+            return True
+        if all(board[i][j] == current_player for i in range(3) for j in range(3)):
+            return True
+        if all(board[i][i] == current_player for i in range(3)) or all(board[i][2-i] == current_player for i in range(3)):
+            return True
+    return False
+
 
 def button_click(i, j):
-    if board[i][j] == " ":
-        board[i][j] = current_player
-        buttons[i][j].config(text=current_player)
+        global current_player
+        if board[i][j] == " ":
+            board[i][j] = current_player
+            buttons[i][j].config(text=current_player)
+        if checkWinner(board):
+            messagebox.showinfo("Победа", f"Победил {current_player}!!")
+
 
 root = tk.Tk()
 board = [[" " for x in range(3)] for x in range(3)]
@@ -27,5 +41,3 @@ elif current_player:
     messagebox.showerror("Ошибка","Пожалуйста, выберите Х или 0")
 else:
     messagebox.showerror("Ошибка", "Пользователь отменил ввод")
-
-
