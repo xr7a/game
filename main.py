@@ -17,6 +17,16 @@ def player_pick():
         root.destroy()
 
 
+def button_click(i, j):
+    global current_player
+    if board[i][j] == "X" or board[i][j] == "0":
+        messagebox.showerror('Ошибка', 'Поле занято')
+        return 0
+    if board[i][j] == " ":
+        board[i][j] = current_player
+        buttons[i][j].config(text=current_player)
+
+
 root = tk.Tk()
 board = [[" " for x in range(3)] for x in range(3)]
 buttons = []
