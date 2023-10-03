@@ -30,6 +30,15 @@ def check_winner(brd):
     return False
 
 
+def restart():
+    global current_player, board
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j].config(text=" ")
+    player_pick()
+
+
 def button_click(i, j):
     global current_player
     if board[i][j] == "X" or board[i][j] == "0":
@@ -40,8 +49,10 @@ def button_click(i, j):
         buttons[i][j].config(text=current_player)
     if check_winner(board):
         messagebox.showinfo("Победа", f"Победил игрок {current_player}!!")
+        restart()
     if all(board[i][j] != " " for i in range(3) for j in range(3)):
         messagebox.showinfo("НИЧЬЯ", "Победила дружба!!")
+        restart()
     else:
         current_player = "0" if current_player == "X" else "X"
 
