@@ -2,6 +2,19 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter.simpledialog import askstring
 
+def player_pick():
+    global current_player
+    current_player = askstring("Начало", "Введите Х или 0")
+    if current_player == "X" or current_player == "0":
+        print(f"Игрок выбрал {current_player}")
+        root.mainloop()
+    elif current_player:
+        messagebox.showerror("Ошибка", "Пожалуйста, выберите Х или 0")
+        restart()
+    else:
+        messagebox.showerror("Ошибка", "Пользователь отменил ввод")
+        root.destroy()
+
 
 def button_click(i, j):
     if board[i][j] == " ":
@@ -19,13 +32,5 @@ for x in range(3):
         row_buttons.append(button)
     buttons.append(row_buttons)
 
-current_player = askstring("Начало", "Введите Х или 0")
-if current_player == "X" or current_player == "0":
-    print(f"Игрок выбрал {current_player}")
-    root.mainloop()
-elif current_player:
-    messagebox.showerror("Ошибка","Пожалуйста, выберите Х или 0")
-else:
-    messagebox.showerror("Ошибка", "Пользователь отменил ввод")
-
-
+current_player = " "
+player_pick()
