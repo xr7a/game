@@ -17,6 +17,19 @@ def player_pick():
         root.destroy()
 
 
+def check_winner(brd):
+    for row in brd:
+        if all(_ == current_player for _ in row):
+            return True
+    for col in range(3):
+        if all(brd[row][col] == current_player for row in range(3)):
+            return True
+    if all(brd[row][row] == current_player for row in range(3)) or\
+            all(brd[row][2-row] == current_player for row in range(3)):
+        return True
+    return False
+
+
 def button_click(i, j):
     global current_player
     if board[i][j] == "X" or board[i][j] == "0":
@@ -25,6 +38,8 @@ def button_click(i, j):
     if board[i][j] == " ":
         board[i][j] = current_player
         buttons[i][j].config(text=current_player)
+    if check_winner(board):
+        messagebox.showinfo("Победа", f"Победил игрок {current_player}!!")
 
 
 root = tk.Tk()
