@@ -40,6 +40,8 @@ def button_click(i, j):
         buttons[i][j].config(text=current_player)
     if check_winner(board):
         messagebox.showinfo("Победа", f"Победил игрок {current_player}!!")
+    if all(board[i][j] != " " for i in range(3) for j in range(3)):
+        messagebox.showinfo("НИЧЬЯ", "Победила дружба!!")
     else:
         current_player = "0" if current_player == "X" else "X"
 
